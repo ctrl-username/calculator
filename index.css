@@ -1,0 +1,23 @@
+body {
+  font-size: 3.5rem;
+}
+
+.container {
+  display: flex;
+}
+
+input {
+  height: 100px;
+  width: 100%;
+}
+
+/* button styling */
+
+button {
+  height: 50px;
+  width: 50px;
+  font-family: roboto;
+  font-size: 1rem;
+  margin: 5px;
+  border-radius: 6px;
+}
