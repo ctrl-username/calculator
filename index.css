@@ -8,7 +8,7 @@ body {
 }
 .keypad {
   display: flex;
-  flex-direction:;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 input {
