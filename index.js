@@ -28,6 +28,10 @@ function divide(a,b){
 }
 
 //====end basic arithmetic functions====
+//
+//
+//
+
 
 //====operate function that calls arithmetic function====
 //
@@ -43,7 +47,18 @@ function operate(operandX, operandY){
               return add(operandX, operandY)
         default:
             console.log("invalid operator/no operator have been specified")
+
+         
 }
 
 
 }
+//====end of operate function====
+
+//====update display function====
+function updateDisplay(displayValue){
+    let display = document.getElementById("display");
+
+    display.value = displayValue
+}
+
