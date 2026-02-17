@@ -60,81 +60,86 @@ function updateDisplay(displayValue) {
 updateDisplay(defaultDisplayValue);
 
 //====event listener for keypad buttons====
-
+let disval = "";
 document.querySelector(".keypad").addEventListener("click", (event) => {
   let id = event.target.id;
-  let disval = "";
+
   console.log(event.target.id);
+  //====switch case for operators====
+
   switch (event.target.id) {
     case "c":
-      console.log("C was clicked");
-      disval = 0;
+      disval = "";
       break;
     case "CE":
-      console.log("CE was clicked");
-      disval = 0;
+      disval = "";
       break;
     case "modulus":
-      console.log("modulus was clicked");
       disval = "%";
       break;
     case "multiply":
-      console.log("multiply was clicked");
       disval = "X";
-      break;
-    case "seven":
-      console.log("seven was clicked");
-      disval = 7;
-      break;
-    case "eight":
-      disval = 8;
-      break;
-    case "nine":
-      disval = 9;
-      break;
-    case "divide":
-      disval = "/";
-      break;
-    case "four":
-      disval = 4;
-      break;
-    case "five":
-      disval = 5;
-      break;
-    case "six":
-      disval = 6;
-      break;
-    case "minus":
-      disval = "-";
-      break;
-    case "one":
-      disval = 1;
-      break;
-    case "two":
-      disval = 2;
-      break;
-    case "three":
-      disval = 3;
-      break;
-    case "plus":
-      disval = "+";
-      break;
-    case "zero":
-      disval = 0;
-      break;
-    case "dzero":
-      disval = "00";
-      // use 00 in quotes coz leading zeroes is invalid syntax (it's considered octal literals)
-      break;
-    case "period":
-      disval = ".";
       break;
     case "equal":
       disval = "=";
       break;
+    case "divide":
+      disval += "/";
+      break;
+    case "minus":
+      disval = "-";
+      break;
+    case "plus":
+      disval = "+";
+      break;
+  }
+  //====switch case for characters and
+  switch (event.target.id) {
+    case "seven":
+      console.log("seven was clicked");
+      disval += "7";
+      break;
+    case "eight":
+      disval += "8";
+      break;
+    case "nine":
+      disval += "9";
+      break;
+
+    case "four":
+      disval += "4";
+      break;
+    case "five":
+      disval += "5";
+      break;
+    case "six":
+      disval += "6";
+      break;
+
+    case "one":
+      disval += "1";
+      break;
+    case "two":
+      disval += "2";
+      break;
+    case "three":
+      disval += "3";
+      break;
+
+    case "zero":
+      disval += "0";
+      break;
+    case "dzero":
+      disval += "00";
+      // use 00 in quotes coz leading zeroes is invalid syntax (it's considered octal literals)
+      // SyntaxError: Octal literals are not allowed in strict mode
+      break;
+    case "period":
+      disval = ".";
+      break;
 
     // case "CE":
   }
-
+  (disval == "") | (disval == 0) ? (disval = "") : console.log("using");
   updateDisplay(disval);
 });
