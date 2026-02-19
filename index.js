@@ -8,6 +8,7 @@ let operator = "";
 let numX = 0;
 let numY = 0;
 let defaultDisplayValue = 0;
+let operatorState = false;
 
 //====basic arithmetic functions====
 function add(a, b) {
@@ -24,6 +25,10 @@ function multiply(a, b) {
 
 function divide(a, b) {
   return a / b;
+}
+
+function modulus(a, b) {
+  return a % b;
 }
 
 //====end basic arithmetic functions====
@@ -43,6 +48,8 @@ function operate(operandX, operandY) {
       return subtract(operandX, operandY);
     case "add":
       return add(operandX, operandY);
+    case "modulus":
+      return modulus(operandX, operandY);
     default:
       console.log("invalid operator/no operator have been specified");
   }
@@ -57,7 +64,7 @@ function updateDisplay(displayValue) {
 }
 //====end of display function====
 
-updateDisplay(defaultDisplayValue);
+//updateDisplay(defaultDisplayValue);
 
 //====event listener for keypad buttons====
 let disval = "";
@@ -70,27 +77,47 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   switch (event.target.id) {
     case "c":
       disval = "";
+
       break;
     case "CE":
       disval = "";
       break;
-    case "modulus":
-      disval = "%";
-      break;
-    case "multiply":
-      disval = "X";
-      break;
+
     case "equal":
       disval = "=";
       break;
+  }
+  // ==== switch case for math operators====
+  switch (event.target.id) {
+    case "modulus":
+      disval = "%";
+      operatorState = true;
+      operator = `${event.target.id}`;
+
+      break;
+    case "multiply":
+      disval = "X";
+      operatorState = true;
+      operator = `${event.target.id}`;
+
+      break;
     case "divide":
       disval += "/";
+      operatorState = true;
+      operator = `${event.target.id}`;
+
       break;
-    case "minus":
+    case "subtract":
       disval = "-";
+      operatorState = true;
+      operator = `${event.target.id}`;
+
       break;
     case "plus":
       disval = "+";
+      operatorState = true;
+      operator = `${event.target.id}`;
+
       break;
   }
   //====switch case for characters and
@@ -135,11 +162,13 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
       // SyntaxError: Octal literals are not allowed in strict mode
       break;
     case "period":
-      disval = ".";
+      disval += ".";
       break;
 
     // case "CE":
   }
-  (disval == "") | (disval == 0) ? (disval = "") : console.log("using");
+  (disval == "") | (disval == 0)
+    ? (disval = "")
+    : console.log("display value is not zero or undefined");
   updateDisplay(disval);
 });

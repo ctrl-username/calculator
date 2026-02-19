@@ -1,0 +1,10 @@
+// button accept inputs in place
+//need logic for monitoring operators
+// create var for operator state
+// event listener monitors operator state on click
+// if operator = true record event in sec var
+// if user click operator, update operator and set operator state variable to true
+// on click of "=" call operate function
+//
+//add operatorstate variable
+//operator state variable should update to true when an operator is clicked
