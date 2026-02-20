@@ -5,8 +5,8 @@
 //create a function operate that takes an operator and operands then calls one of the arithmetic functions
 //
 let operator = "";
-let numX = 0;
-let numY = 0;
+let numX = "";
+let numY = "";
 let defaultDisplayValue = 0;
 let operatorState = false;
 
@@ -67,6 +67,7 @@ function updateDisplay(displayValue) {
 //updateDisplay(defaultDisplayValue);
 
 //====event listener for keypad buttons====
+let buttonValue = "";
 let disval = "";
 document.querySelector(".keypad").addEventListener("click", (event) => {
   let id = event.target.id;
@@ -113,56 +114,55 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
       operator = `${event.target.id}`;
 
       break;
-    case "plus":
+    case "add":
       disval = "+";
       operatorState = true;
       operator = `${event.target.id}`;
 
       break;
   }
-  //====switch case for characters and
+  //====switch case for digits ====
   switch (event.target.id) {
     case "seven":
-      console.log("seven was clicked");
-      disval += "7";
+      buttonValue += "7";
       break;
     case "eight":
-      disval += "8";
+      buttonValue += "8";
       break;
     case "nine":
-      disval += "9";
+      buttonValue += "9";
       break;
 
     case "four":
-      disval += "4";
+      buttonValue += "4";
       break;
     case "five":
-      disval += "5";
+      buttonValue += "5";
       break;
     case "six":
-      disval += "6";
+      buttonValue += "6";
       break;
 
     case "one":
-      disval += "1";
+      buttonValue += "1";
       break;
     case "two":
-      disval += "2";
+      buttonValue += "2";
       break;
     case "three":
-      disval += "3";
+      buttonValue += "3";
       break;
 
     case "zero":
-      disval += "0";
+      buttonValue += "0";
       break;
     case "dzero":
-      disval += "00";
+      buttonValue += "00";
       // use 00 in quotes coz leading zeroes is invalid syntax (it's considered octal literals)
       // SyntaxError: Octal literals are not allowed in strict mode
       break;
     case "period":
-      disval += ".";
+      buttonValue += ".";
       break;
 
     // case "CE":
@@ -171,4 +171,9 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
     ? (disval = "")
     : console.log("display value is not zero or undefined");
   updateDisplay(disval);
+  //buttonValue = disval;
+  operatorState ? (numY += buttonValue) : (numX += buttonValue);
+  buttonValue = "";
 });
+
+//operate(Number(numX), Number(numY))
