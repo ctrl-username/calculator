@@ -170,10 +170,11 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   (disval == "") | (disval == 0)
     ? (disval = "")
     : console.log("display value is not zero or undefined");
-  updateDisplay(disval);
+
   //buttonValue = disval;
   operatorState ? (numY += buttonValue) : (numX += buttonValue);
   buttonValue = "";
+  updateDisplay(operatorState ? numY : numX);
 });
 
 //operate(Number(numX), Number(numY))
