@@ -75,21 +75,41 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   let id = event.target.id;
 
   console.log(event.target.id);
+
+  //==== reset functions ====
+  // reset numX and numY
+
+  function resetXandY() {
+    numX = "";
+    numY = "";
+  }
+
+  // reset everything
+
+  function resetEverything() {
+    numX = "";
+    numY = "";
+    result = "";
+    operatorState = false;
+    resultState = false;
+  }
+
   //====switch case for operators====
 
   switch (event.target.id) {
     case "c":
-      disval = "";
+      resetEverything();
 
       break;
     case "CE":
-      disval = "";
+      resetEverything();
       break;
 
     case "equal":
       result = operate(Number(numX), Number(numY));
       resultState = true;
       operatorState = false;
+      resetXandY();
 
       break;
   }
