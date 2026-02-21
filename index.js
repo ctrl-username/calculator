@@ -39,18 +39,25 @@ function modulus(a, b) {
 
 //====operate function that calls arithmetic function====
 //
-function operate(operandX, operandY) {
+function operate() {
+  !resultState ? (operandX = Number(result)) : (operandX = Number(numX));
+  operandY = Number(numY);
   switch (operator) {
     case "multiply":
-      return multiply(operandX, operandY);
+      result = multiply(operandX, operandY);
+      break;
     case "divide":
-      return divide(operandX, operandY);
+      result = divide(operandX, operandY);
+      break;
     case "subtract":
-      return subtract(operandX, operandY);
+      result = subtract(operandX, operandY);
+      break;
     case "add":
-      return add(operandX, operandY);
+      result = add(operandX, operandY);
+      break;
     case "modulus":
-      return modulus(operandX, operandY);
+      result = modulus(operandX, operandY);
+      break;
     default:
       console.log("invalid operator/no operator have been specified");
   }
@@ -94,6 +101,8 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
     resultState = false;
   }
 
+  //====results handling function ====
+
   //====switch case for operators====
 
   switch (event.target.id) {
@@ -106,9 +115,9 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
       break;
 
     case "equal":
-      result = operate(Number(numX), Number(numY));
       resultState = true;
       operatorState = false;
+      operate();
       resetXandY();
 
       break;

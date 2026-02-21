@@ -10,3 +10,6 @@
 //operator state variable should update to true when an operator is clicked
 
 //create  result var
+// current problem 
+
+
