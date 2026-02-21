@@ -7,6 +7,7 @@
 let operator = "";
 let numX = "";
 let numY = "";
+let result = "";
 let defaultDisplayValue = 0;
 let operatorState = false;
 
@@ -69,6 +70,7 @@ function updateDisplay(displayValue) {
 //====event listener for keypad buttons====
 let buttonValue = "";
 let disval = "";
+let resultState = false;
 document.querySelector(".keypad").addEventListener("click", (event) => {
   let id = event.target.id;
 
@@ -85,7 +87,10 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
       break;
 
     case "equal":
-      disval = "=";
+      result = operate(Number(numX), Number(numY));
+      resultState = true;
+      operatorState = false;
+
       break;
   }
   // ==== switch case for math operators====
@@ -174,7 +179,7 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   //buttonValue = disval;
   operatorState ? (numY += buttonValue) : (numX += buttonValue);
   buttonValue = "";
-  updateDisplay(operatorState ? numY : numX);
+  updateDisplay(operatorState ? numY : resultState ? result : numX);
 });
 
 //operate(Number(numX), Number(numY))
