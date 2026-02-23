@@ -40,7 +40,7 @@ function modulus(a, b) {
 //====operate function that calls arithmetic function====
 //
 function operate() {
-  !resultState ? (operandX = Number(result)) : (operandX = Number(numX));
+  resultState ? (operandX = Number(result)) : (operandX = Number(numX));
   operandY = Number(numY);
   switch (operator) {
     case "multiply":
@@ -115,9 +115,10 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
       break;
 
     case "equal":
-      resultState = true;
       operatorState = false;
+
       operate();
+      resultState = true;
       resetXandY();
 
       break;
@@ -201,9 +202,6 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
 
     // case "CE":
   }
-  (disval == "") | (disval == 0)
-    ? (disval = "")
-    : console.log("display value is not zero or undefined");
 
   //buttonValue = disval;
   operatorState ? (numY += buttonValue) : (numX += buttonValue);

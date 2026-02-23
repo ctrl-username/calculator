@@ -13,3 +13,4 @@
 // current problem 
 
 
+capture result value and add result value to numY var
