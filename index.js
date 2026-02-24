@@ -130,26 +130,16 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   // ==== switch case for math operators====
   switch (event.target.id) {
     case "modulus":
-      operatorState = true;
-      operator = `${event.target.id}`;
 
-      break;
     case "multiply":
-      operatorState = true;
-      operator = `${event.target.id}`;
 
-      break;
     case "divide":
-      operatorState = true;
-      operator = `${event.target.id}`;
 
-      break;
     case "subtract":
-      operatorState = true;
-      operator = `${event.target.id}`;
 
-      break;
     case "add":
+      if (numX !== "" && numY !== "" && operator !== "") {
+      }
       operatorState = true;
       operator = `${event.target.id}`;
 
