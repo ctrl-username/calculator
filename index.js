@@ -7,7 +7,7 @@
 let operator = "";
 let numX = "";
 let numY = "";
-let result = "";
+let result = null;
 let defaultDisplayValue = 0;
 let operatorState = false;
 
@@ -40,8 +40,9 @@ function modulus(a, b) {
 //====operate function that calls arithmetic function====
 //
 function operate() {
-  resultState ? (operandX = Number(result)) : (operandX = Number(numX));
-  operandY = Number(numY);
+  if (numX === "" && result === null) return;
+  let operandX = resultState ? Number(result) : Number(numX);
+  let operandY = Number(numY);
   switch (operator) {
     case "multiply":
       result = multiply(operandX, operandY);
@@ -76,7 +77,7 @@ function updateDisplay(displayValue) {
 
 //====event listener for keypad buttons====
 let buttonValue = "";
-let disval = "";
+
 let resultState = false;
 document.querySelector(".keypad").addEventListener("click", (event) => {
   let id = event.target.id;
@@ -126,31 +127,26 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   // ==== switch case for math operators====
   switch (event.target.id) {
     case "modulus":
-      disval = "%";
       operatorState = true;
       operator = `${event.target.id}`;
 
       break;
     case "multiply":
-      disval = "X";
       operatorState = true;
       operator = `${event.target.id}`;
 
       break;
     case "divide":
-      disval += "/";
       operatorState = true;
       operator = `${event.target.id}`;
 
       break;
     case "subtract":
-      disval = "-";
       operatorState = true;
       operator = `${event.target.id}`;
 
       break;
     case "add":
-      disval = "+";
       operatorState = true;
       operator = `${event.target.id}`;
 
@@ -159,51 +155,87 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   //====switch case for digits ====
   switch (event.target.id) {
     case "seven":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "7";
+
       break;
     case "eight":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "8";
       break;
     case "nine":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "9";
       break;
 
     case "four":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "4";
       break;
     case "five":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "5";
       break;
     case "six":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "6";
       break;
 
     case "one":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "1";
       break;
     case "two":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "2";
       break;
     case "three":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "3";
       break;
 
     case "zero":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "0";
       break;
     case "dzero":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += "00";
       // use 00 in quotes coz leading zeroes is invalid syntax (it's considered octal literals)
       // SyntaxError: Octal literals are not allowed in strict mode
       break;
     case "period":
+      if (resultState) {
+        resetEverything();
+      }
       buttonValue += ".";
       break;
 
     // case "CE":
   }
 
-  //buttonValue = disval;
   operatorState ? (numY += buttonValue) : (numX += buttonValue);
   buttonValue = "";
   updateDisplay(operatorState ? numY : resultState ? result : numX);
