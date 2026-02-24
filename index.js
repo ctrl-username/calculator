@@ -25,6 +25,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+  if (b === 0) return "Error: can't divide by 0";
   return a / b;
 }
 
@@ -97,7 +98,7 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   function resetEverything() {
     numX = "";
     numY = "";
-    result = "";
+    result = null;
     operatorState = false;
     resultState = false;
   }
@@ -116,6 +117,8 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
       break;
 
     case "equal":
+      if (!operatorState) break;
+
       operatorState = false;
 
       operate();
@@ -155,71 +158,71 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   //====switch case for digits ====
   switch (event.target.id) {
     case "seven":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "7";
 
       break;
     case "eight":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "8";
       break;
     case "nine":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "9";
       break;
 
     case "four":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "4";
       break;
     case "five":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "5";
       break;
     case "six":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "6";
       break;
 
     case "one":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "1";
       break;
     case "two":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "2";
       break;
     case "three":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "3";
       break;
 
     case "zero":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "0";
       break;
     case "dzero":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += "00";
@@ -227,7 +230,7 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
       // SyntaxError: Octal literals are not allowed in strict mode
       break;
     case "period":
-      if (resultState) {
+      if (resultState && !operatorState) {
         resetEverything();
       }
       buttonValue += ".";
