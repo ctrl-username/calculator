@@ -122,8 +122,10 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
       operatorState = false;
 
       operate();
+      numX = result;
+      numY = "";
       resultState = true;
-      resetXandY();
+      // resetXandY();
 
       break;
   }
@@ -139,6 +141,11 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
 
     case "add":
       if (numX !== "" && numY !== "" && operator !== "") {
+        operate();
+        resultState = true;
+        numX = result;
+        numY = "";
+        // updateDisplay(result);
       }
       operatorState = true;
       operator = `${event.target.id}`;
