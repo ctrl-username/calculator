@@ -63,6 +63,7 @@ function operate() {
     default:
       console.log("invalid operator/no operator have been specified");
   }
+  if (typeof result === "number") result = parseFloat(result.toFixed(10));
 }
 //====end of operate function====
 
