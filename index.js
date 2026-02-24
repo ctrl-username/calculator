@@ -230,6 +230,7 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
       if (resultState && !operatorState) {
         resetEverything();
       }
+      if ((operatorState ? numY : numX).includes(".")) break;
       buttonValue += ".";
       break;
 
