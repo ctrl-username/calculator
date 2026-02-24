@@ -62,6 +62,7 @@ function keyboardEvent() {
       c: "c",
       Backspace: "CE",
       Enter: "equal",
+      "=": "equal",
     };
     const buttonID = keymap[event.key];
     if (buttonID) {
