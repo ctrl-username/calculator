@@ -36,6 +36,40 @@ function modulus(a, b) {
 //====end basic arithmetic functions====
 //
 //
+
+//==== start of keyboard event listener ====
+function keyboardEvent() {
+  document.addEventListener("keydown", (event) => {
+    const keymap = {
+      0: "zero",
+      1: "one",
+      2: "two",
+      3: "three",
+      4: "four",
+      5: "five",
+      6: "six",
+      7: "seven",
+      8: "eight",
+      9: "nine",
+      ".": "period",
+      // operators
+      "+": "add",
+      "-": "subtract",
+      "/": "divide",
+      "*": "multiply",
+      "%": "modulus",
+      //special keys
+      c: "c",
+      Backspace: "CE",
+      Enter: "equal",
+    };
+    const buttonID = keymap[event.key];
+    if (buttonID) {
+      document.getElementById(buttonID).click();
+    }
+  });
+}
+//
 //
 
 //====operate function that calls arithmetic function====
@@ -105,8 +139,6 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
   }
 
   //====results handling function ====
-
-  //====switch case for operators====
 
   switch (event.target.id) {
     case "c":
@@ -245,3 +277,5 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
 });
 
 //operate(Number(numX), Number(numY))
+
+keyboardEvent();
