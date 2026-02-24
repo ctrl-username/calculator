@@ -113,7 +113,8 @@ document.querySelector(".keypad").addEventListener("click", (event) => {
 
       break;
     case "CE":
-      resetEverything();
+      operatorState ? (numY = numY.slice(0, -1)) : (numX = numX.slice(0, -1));
+      updateDisplay(operatorState ? numY : numX);
       break;
 
     case "equal":
